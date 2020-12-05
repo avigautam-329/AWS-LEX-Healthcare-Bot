@@ -85,3 +85,4 @@ Each department has information about 10 doctors distributed across the three re
         <img src="https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/BookAnAppointment/User_time2.png" width="400" /> 
     </p>
 
+![BookAnAppoinmtment slotTypes](https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/BookAnAppointment/SlotAndSlotTypes.png)
