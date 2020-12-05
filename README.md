@@ -23,4 +23,6 @@ This project was created while doing an intership at _DCM InfoTech_. The chatbot
 
 ### How do all the services work together ?
 
-![Flow of AWS]()
+![Flow of AWS](https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/ServicesUsage.png)
+
+
