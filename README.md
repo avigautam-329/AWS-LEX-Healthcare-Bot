@@ -65,8 +65,8 @@ Each department has information about 10 doctors distributed across the three re
     - _Age_ : This stores the age of the patient and uses a custom SlotType **AgeGroups**.![Age Groups](https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/AgeGroups.png)
     - _Department_ : This computes the medical Department based on the symptoms given by the user. It uses a custom SlotType **DepartmentName**.
     <p float="left">
-        <img src="https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/DepartmentName1.png" width="100" />
-        <img src="https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/DepartmentName2.png" width="100" /> 
+        <img src="https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/DepartmentName1.png" width="400" />
+        <img src="https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/DepartmentName2.png" width="400" /> 
     </p>
 ![Greetings Slots](https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/SlotAndSlotTypes.png)
     
