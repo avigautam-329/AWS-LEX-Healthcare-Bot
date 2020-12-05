@@ -51,6 +51,7 @@ This project was created while doing an intership at _DCM InfoTech_. The chatbot
     - Orthopedics
     - Pedriatics
     - Physician
+
 Each department has information about 10 doctors distributed across the three regions.
 ![DynamoDB](https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/DynamoDB/TablePic.png)
 
@@ -126,8 +127,22 @@ The name of the lambda function used here is **DoctorInfoLambdafunction** .
 
 Now for the intents:
 - _Greetings_ : The lambda function is used for fulfillment purporses to show the response card with the names of all the doctors w.r.t the department chosen by the bot.
-    - The function used to fetch the data and show the response card is greetings_intent().
+    - The function used to fetch the data and show the response card is *greetings_intent()*.
 ![Greetings lambda](https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/Fulfillment.png) 
 - _BookAnAppointment_ : Lambda function is used here to fill the slots using **Elicitslot** type . Hence the lambda function is used her in the DialogHook. Hence in this intent lambda function has an integeral function of controlling the flow of the dialogue and also for error handling.
+    - The function used to control the flow of the dialog is _bookappointment()_.
+    - The in-built function client_lex.get_session used in the function bookappointment() is used to get the information from the previous intent **Greetings**. 
 ![BookAnAppointment lambda](https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/BookAnAppointment/LambdaValidation.png)
 
+Libraries used in Lambda function are *boto3*,*json* and *aws-cli* .
+- **_boto3_** : Boto is the Amazon Web Services (AWS) SDK for Python. It enables Python developers to create, configure, and manage AWS services.
+- **_json_** : Json is used here as all the data transmission in aws is done in json format.
+- **_aws-cli_** : This package provides a unified command line interface to Amazon Web Services. This library is used to run aws services in the local system after signing in aws console using aws-cli.
+
+## Conversation Screenshots and video presentation
+
+<p float="left">
+        <img src="https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/DepartmentName1.png" width="300" />
+        <img src="https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/DepartmentName2.png" width="300" />
+        <img src="https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/DepartmentName2.png" width="300" />  
+</p>
