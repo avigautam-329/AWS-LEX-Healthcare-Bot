@@ -142,7 +142,11 @@ Libraries used in Lambda function are *boto3*,*json* and *aws-cli* .
 ## Conversation Screenshots and video presentation
 
 <p float="left">
-        <img src="https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/DepartmentName1.png" width="300" />
-        <img src="https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/DepartmentName2.png" width="300" />
-        <img src="https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/DepartmentName2.png" width="300" />  
+        <img src="https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Conversations/part-1.png" width="400" />
+        <img src="https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Conversations/part-2.png" width="400" />
+        <img src="https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Conversations/part-3.png" width="400" />
+        <img src="https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Conversations/part-4.png" width="400" />
+        <img src="https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Conversations/part-5.png" width="400" />
+        <img src="https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Conversations/part-6.png" width="400" />  
 </p>
+--------
