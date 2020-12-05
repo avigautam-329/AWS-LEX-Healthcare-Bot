@@ -62,7 +62,8 @@ Each department has information about 10 doctors distributed across the three re
 - **Greetings** : The slots and slotypes in this intent used are:
     - _FirstName_ : This is the slot that asks and stores the first name of the patient. The SlotType used here is **amazon.us_first_name** which is a built in slot type in amazon lex.
     - _LastName_ : This is the slot that asks and stores the last name of the patient. The SlotType used here is **amazon.us_last_name** which is a built in slot type in aws lex.
-    - _Age_ : This stores the age of the patient and uses a custom SlotType **AgeGroups**.![Age Groups](https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/AgeGroups.png)
+    - _Age_ : This stores the age of the patient and uses a custom SlotType **AgeGroups**.
+    <img src= "https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/AgeGroups.png" width="400" />
     - _Department_ : This computes the medical Department based on the symptoms given by the user. It uses a custom SlotType **DepartmentName**.
     <p float="left">
         <img src="https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/DepartmentName1.png" width="400" />
