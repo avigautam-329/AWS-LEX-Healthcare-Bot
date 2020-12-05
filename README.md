@@ -4,6 +4,8 @@
 ![AWS LAMBDA BADGE](https://img.shields.io/badge/AWS%20-lambda-orange)
 ![AWS DYNAMO DB](https://img.shields.io/badge/AWS%20-DyanmoDB-blue)
 ![Python Badge](https://img.shields.io/badge/Python-v3.7.8-yellowgreen)
+![Python Boto3](https://img.shields.io/badge/Boto3-v1.15.12-lightgrey)
+![Python Json](https://img.shields.io/badge/Json-v.2.0.9-lightgrey)
 -------------
 
 ## What is AWS ?
@@ -53,3 +55,6 @@ Each department has information about 10 doctors distributed across the three re
 
 **The index used to search the DynamoDB are:**
 ![DynamoDB-Indexes](https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/DynamoDB/IndexesPic.png) 
+
+### Slots and Slotypes used in AWS Lex 
+
