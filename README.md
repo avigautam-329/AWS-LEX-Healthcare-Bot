@@ -30,5 +30,26 @@ This project was created while doing an intership at _DCM InfoTech_. The chatbot
 - **User** - The user interacts with the AWS Lex bot and starts the conversation by using the Sample Utterances to invoke the intent "**_Greetings_**".And the user further converses with the bot to feed it information about the patient or user. Based on the information the lex bot further computes which medical department does the user need to refer to.
 ![Greetings Fullfilment](https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/SampleUtterances.png)
 
-- **Lex** - The Lex bot has 2 intents namely **_Greetings_** and **_BookAnAppointment_**. The first intent to get invoked is 
+- **Lex** - The Lex bot has 2 intents namely **_Greetings_** and **_BookAnAppointment_**. The first intent to get invoked is "**Greetings**".
+    - _Greetings_ : The main job of this intent is to know the details of the patient and try to detect the medical Department that the user needs to refer to based on the answers given by the user.
+    - _BookAnAppointment_ : The main job of this intent is to Book the appointemnt for the user after the user has choosen the doctor they want to see.
 
+- **Lambda** - Lambda is an integeral part of this project as it has the job of fetching the data from the DynamoDB based on the medical Department inferred by the bot. The other main part of the lambda function is to determine the flow of the conversation and handling the intent switching. The lambda function is written in **Python** and The **IAM Roles** given to the lambda function are:
+![IAM Roles](https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/IAM_ROLES/IamRoles.png)
+
+- **DynamoDB** - It is the database that is used to store the information about the doctors and which area are they based in. Soo , There are three main regions _Gurugram_,_Noida_ and _Ghaziabad_. There are 10 medical departments which are :
+    - Cardiology
+    - Dermatology
+    - General Surgery
+    - Gynecology
+    - Neurology
+    - Oncology
+    - Opthamology
+    - Orthopedics
+    - Pedriatics
+    - Physician
+Each department has information about 10 doctors distributed across the three regions.
+![DynamoDB](https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/DynamoDB/TablePic.png)
+
+**The index used to search the DynamoDB are:**
+![DynamoDB-Indexes](https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/DynamoDB/IndexesPic.png) 
