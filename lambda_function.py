@@ -21,6 +21,7 @@ def pincode_Distance(pincode_area,arr_pincode):
     return max_elem_index
 
 #------------------------------------------------------------------------------#
+
 #Funtion to pick closest Doctors using pincode.
 def pincode_reordering(pincode_area,location_arr):
     
@@ -245,24 +246,44 @@ def bookappointment(event):
             return return_statement
             
     elif event["currentIntent"]["slots"]["Confirmation_Status"] != None and event["currentIntent"]["slots"]["opd_days"] == None and event["currentIntent"]["slots"]["User_time"] == None:   
-            return_statement ={             
-                    "dialogAction": { 
-                        
-                        "type": "ElicitSlot",
-                        "intentName": "BookAnAppointment",
-                        "slotToElicit":"opd_days",
-                        "slots":{
-                          "Doctor_Name":event["currentIntent"]["slots"]["Doctor_Name"],
-                          "Confirmation_Status":event["currentIntent"]["slots"]["Confirmation_Status"]
-                        },
-                        "message": {
-                            "contentType": "PlainText", 
-                            "content": "Which day is comfortable with the patient ?"  
+            if event["currentIntent"]["slots"]["Confirmation_Status"] == "Yes":
+                return_statement ={             
+                        "dialogAction": { 
+                            
+                            "type": "ElicitSlot",
+                            "intentName": "BookAnAppointment",
+                            "slotToElicit":"opd_days",
+                            "slots":{
+                              "Doctor_Name":event["currentIntent"]["slots"]["Doctor_Name"],
+                              "Confirmation_Status":event["currentIntent"]["slots"]["Confirmation_Status"]
+                            },
+                            "message": {
+                                "contentType": "PlainText", 
+                                "content": "Which day is comfortable with the patient ?"  
+                        }
                     }
                 }
-            }
-            
-            return return_statement
+                
+                return return_statement
+            elif event["currentIntent"]["slots"]["Confirmation_Status"] == "No":
+                
+                return_statement ={             
+                        "dialogAction": { 
+                            
+                            "type": "ElicitSlot",
+                            "intentName": "BookAnAppointment",
+                            "slotToElicit":"Doctor_Name",
+                            "slots":{
+                            },
+                            "message": {
+                                "contentType": "PlainText", 
+                                "content": "Please choose another doctor to proceed."  
+                        }
+                    }
+                }
+                
+                return return_statement
+                
             
     elif event["currentIntent"]["slots"]["Confirmation_Status"] != None and event["currentIntent"]["slots"]["opd_days"] != None and event["currentIntent"]["slots"]["User_time"] == None:
         return_statement ={             
