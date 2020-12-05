@@ -1,4 +1,4 @@
-# AWS-LEX-Healthcare-Bot
+# AWS-LEX-Healthcare-Bot :stethoscope::hospital::computer:
 
 ![AWS LEX BADGE](https://img.shields.io/badge/AWS%20-Lex-orange)
 ![AWS LAMBDA BADGE](https://img.shields.io/badge/AWS%20-lambda-orange)
