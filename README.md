@@ -6,6 +6,7 @@
 ![Python Badge](https://img.shields.io/badge/Python-v3.7.8-yellowgreen)
 ![Python Boto3](https://img.shields.io/badge/Boto3-v1.15.12-lightgrey)
 ![Python Json](https://img.shields.io/badge/Json-v.2.0.9-lightgrey)
+![Python aws-cli](https://img.shields.io/badge/aws--cli-v1.18.153-lightgrey)
 -------------
 
 ## What is AWS ?
