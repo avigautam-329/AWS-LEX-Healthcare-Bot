@@ -44,6 +44,20 @@ def pincode_reordering(pincode_area,location_arr):
 
 #------------------------------------------------------------------------------#
 
+#Check the opd days.
+def check_opddays(user_day,opddays_arr):
+    
+    count = 0
+    for i in range(len(opddays_arr)):
+        if user_day == opddays_arr[i]:
+            return True
+        else:
+            count = count + 1
+    if count > 0:
+        return False
+        
+#------------------------------------------------------------------------------#
+
 #Function to create the card for the greetings intent.
 def greetings_intent(event):
     
@@ -155,6 +169,7 @@ def greetings_intent(event):
 def bookappointment(event):
     
     response = None
+    opddays_arr = []
     
     if event["currentIntent"]["slots"]["Confirmation_Status"] == None:
         
@@ -188,6 +203,7 @@ def bookappointment(event):
             patient_pincode = greetings_sess["recentIntentSummaryView"][i]["slots"]["Pincode"]
             patient_pincode = int(patient_pincode)
             doc_index = pincode_Distance(patient_pincode,doctor_pincode_list)
+            opddays_arr = str(doctor_info_list[doc_index]["OPD_Days"]).split(",")
             
             info_str = "{0} works in {1} , {2} and the opd days for the doctor are {3}\nThe timings are : {4}\n Do you want to make an appointment with {5} ?".format(
                 doctor_info_list[doc_index]["Name"],
@@ -217,7 +233,7 @@ def bookappointment(event):
             return return_statement
             
         else:
-            
+            opddays_arr = str(doctor_info_list[0]["OPD_Days"]).split(",")
             info_str = "{0} works in {1} , {2} and the opd days for the doctor are {3}\nThe timings are : {4}\n Do you want to make an appointment with {5} ?".format(
                 doctor_info_list[0]["Name"],
                 doctor_info_list[0]["Hospital"],
@@ -286,25 +302,52 @@ def bookappointment(event):
                 
             
     elif event["currentIntent"]["slots"]["Confirmation_Status"] != None and event["currentIntent"]["slots"]["opd_days"] != None and event["currentIntent"]["slots"]["User_time"] == None:
-        return_statement ={             
-            "dialogAction": { 
-                        
-                "type": "ElicitSlot",
-                "intentName": "BookAnAppointment",
-                "slotToElicit":"User_time",
-                "slots":{
-                    "Doctor_Name":event["currentIntent"]["slots"]["Doctor_Name"],
-                    "Confirmation_Status":event["currentIntent"]["slots"]["Confirmation_Status"],
-                    "opd_days": event["currentIntent"]["slots"]["opd_days"]
-                    },
-                    "message": {
-                        "contentType": "PlainText", 
-                        "content": "What time is comfortable with you with reference to the OPD Timings ?"   
+        
+        
+        
+        if check_opddays(str(event["currentIntent"]["slots"]["opd_days"]),opddays_arr) == False:
+        
+            return_statement ={             
+                    "dialogAction": { 
+                            
+                        "type": "ElicitSlot",
+                        "intentName": "BookAnAppointment",
+                        "slotToElicit":"opd_days",
+                        "slots":{
+                             "Doctor_Name":event["currentIntent"]["slots"]["Doctor_Name"],
+                             "Confirmation_Status":event["currentIntent"]["slots"]["Confirmation_Status"]
+                        },
+                        "message": {
+                            "contentType": "PlainText", 
+                            "content": "Please choose another day"  
                     }
                 }
             }
             
-        return return_statement
+            return return_statement
+        
+        else:
+            
+            return_statement ={             
+                "dialogAction": { 
+                            
+                    "type": "ElicitSlot",
+                    "intentName": "BookAnAppointment",
+                    "slotToElicit":"User_time",
+                    "slots":{
+                        "Doctor_Name":event["currentIntent"]["slots"]["Doctor_Name"],
+                        "Confirmation_Status":event["currentIntent"]["slots"]["Confirmation_Status"],
+                        "opd_days": event["currentIntent"]["slots"]["opd_days"]
+                        },
+                        "message": {
+                            "contentType": "PlainText", 
+                            "content": "What time is comfortable with you with reference to the OPD Timings ?"   
+                        }
+                    }
+                }
+                
+            return return_statement
+            
     
     elif event["currentIntent"]["slots"]["Confirmation_Status"] != None and event["currentIntent"]["slots"]["opd_days"] != None and event["currentIntent"]["slots"]["User_time"] != None and event["currentIntent"]["confirmationStatus"] == "None":
         
