@@ -95,8 +95,7 @@ Lambda function is used in this project to incorporate different services of AWS
 
 The lambda function works on the basis of the currentIntent and the event json passed by the lex bot to the Lambda function. Eg. of event json is:
 
-'''
-{
+'''{
     "messageVersion": "1.0",
     "invocationSource": "DialogCodeHook",
     "userId": "wch89kjqcpkds8seny7dly5x3otq68j3",
@@ -117,6 +116,4 @@ The lambda function works on the basis of the currentIntent and the event json p
         },
         "confirmationStatus": "None"
     }
-}
-
-'''
+}'''
