@@ -27,4 +27,8 @@ This project was created while doing an intership at _DCM InfoTech_. The chatbot
 
 ![Flow of AWS](https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/ServicesUsage.png)
 
+- **User** - The user interacts with the AWS Lex bot and starts the conversation by using the Sample Utterances to invoke the intent "**_Greetings_**".And the user further converses with the bot to feed it information about the patient or user. Based on the information the lex bot further computes which medical department does the user need to refer to.
+![Greetings Fullfilment](https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/SampleUtterances.png)
+
+- **Lex** - The Lex bot has 2 intents namely **_Greetings_** and **_BookAnAppointment_**. The first intent to get invoked is 
 
