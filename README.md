@@ -86,3 +86,6 @@ Each department has information about 10 doctors distributed across the three re
     </p>
 
 ![BookAnAppoinmtment slotTypes](https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/BookAnAppointment/SlotAndSlotTypes.png)
+
+## Lambda Function and it's Usage
+
