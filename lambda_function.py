@@ -9,7 +9,7 @@ client_lex = boto3.client('lex-runtime',region_name='eu-west-1')
 table = db.Table(__tablename__)
 #------------------------------------------------------------------------------#
 
-# Defining the function to pick closest pincode.
+# Defining the function to pick closest pincode incase of overlap in doctor names.
 def pincode_Distance(pincode_area,arr_pincode):
     
     sqr_arr_diff = []
@@ -21,16 +21,44 @@ def pincode_Distance(pincode_area,arr_pincode):
     return max_elem_index
 
 #------------------------------------------------------------------------------#
+#Funtion to pick closest Doctors using pincode.
+def pincode_reordering(pincode_area,location_arr):
+    
+    sqr_arr_diff = []
+    indexes_arr = []
+    
+    for i in range(len(location_arr)):
+        diff = (int(location_arr[i]) - int(pincode_area))**2
+        sqr_arr_diff.append(diff)
+        
+    max_elem = max(sqr_arr_diff)
+    indexes_arr.append(sqr_arr_diff.index(max_elem))
+    
+    for j in range(len(sqr_arr_diff)-1):
+         sqr_arr_diff[indexes_arr[-1]] = -999
+         max_elem = max(sqr_arr_diff)
+         indexes_arr.append(sqr_arr_diff.index(max_elem))
+         
+    return indexes_arr
+
+#------------------------------------------------------------------------------#
 
 #Function to create the card for the greetings intent.
 def greetings_intent(event):
     
-    #CREATING THE PRIMARY KEY NAME AND NUMBER.
+    #Creating local variables.
     primary_column_key = 'S.No'
     primary_key = '1'
+    noida_docs = []
+    gurugram_docs = []
+    ghaziabad_docs = []
+    noida_indexes = []
+    gurugram_indexes = []
+    ghaziabad_indexes = []
     
     department = event["currentIntent"]["slots"]["Department"]
     age = event["currentIntent"]["slots"]["Age"]
+    pincode_area = event["currentIntent"]["slots"]["Pincode"]
     
     response = table.query(
         IndexName='Department-index',
@@ -39,6 +67,22 @@ def greetings_intent(event):
     
     if int(age) <= 18:
         department = "Pediatrician"
+        
+    for i in range(len(response['Items'])):
+        if response['Items'][i]['Area'] == 'Gurugram':
+            gurugram_indexes.append(response['Items'][i]['Pincode'])
+            gurugram_docs.append(response['Items'][i])
+        elif response['Items'][i]['Area'] == 'Noida':
+            noida_indexes.append(response['Items'][i]['Pincode'])
+            noida_docs.append(response['Items'][i])
+        elif response['Items'][i]['Area'] == 'Ghaziabad':
+            ghaziabad_indexes.append(response['Items'][i]['Pincode'])
+            ghaziabad_docs.append(response['Items'][i])
+        else:pass
+    
+    noida_indexes = pincode_reordering(pincode_area,noida_indexes)
+    gurugram_indexes = pincode_reordering(pincode_area,gurugram_indexes)
+    ghaziabad_indexes = pincode_reordering(pincode_area,ghaziabad_indexes)    
     
     return_statement = { 
         "dialogAction": {
@@ -81,17 +125,27 @@ def greetings_intent(event):
     return_statement = json.dumps(return_statement)
     return_statement = json.loads(return_statement)
     
-    for i in range(len(response['Items'])):
-        dict_ = {'text':response['Items'][i]['Name'],"value": response['Items'][i]['Name']}
+    for i in range(len(gurugram_docs)):
+        ind = gurugram_indexes[i]
+        dict_ = {'text':gurugram_docs[ind]['Name'],"value": gurugram_docs[ind]['Name']}
+        dict_ = json.dumps(dict_)
+        dict_ = json.loads(dict_)        
+        return_statement["dialogAction"]["responseCard"]["genericAttachments"][0]["buttons"].append(dict_)
+        
+    for i in range(len(noida_docs)):
+        ind = noida_indexes[i]
+        dict_ = {'text':noida_docs[ind]['Name'],"value": noida_docs[ind]['Name']}
         dict_ = json.dumps(dict_)
         dict_ = json.loads(dict_)
-        if response['Items'][i]['Area'] == 'Gurugram':
-            return_statement["dialogAction"]["responseCard"]["genericAttachments"][0]["buttons"].append(dict_)
-        elif response['Items'][i]['Area'] == 'Noida':
-            return_statement["dialogAction"]["responseCard"]["genericAttachments"][1]["buttons"].append(dict_)
-        elif response['Items'][i]['Area'] == 'Ghaziabad':
-            return_statement["dialogAction"]["responseCard"]["genericAttachments"][2]["buttons"].append(dict_)
-        else:pass
+        return_statement["dialogAction"]["responseCard"]["genericAttachments"][1]["buttons"].append(dict_)
+
+    for i in range(len(ghaziabad_docs)):
+        ind = ghaziabad_indexes[i]
+        dict_ = {'text':ghaziabad_docs[ind]['Name'],"value": ghaziabad_docs[ind]['Name']}
+        dict_ = json.dumps(dict_)
+        dict_ = json.loads(dict_)
+        return_statement["dialogAction"]["responseCard"]["genericAttachments"][2]["buttons"].append(dict_)
+        
     
     return return_statement
 #------------------------------------------------------------------------------#    
@@ -134,9 +188,10 @@ def bookappointment(event):
             patient_pincode = int(patient_pincode)
             doc_index = pincode_Distance(patient_pincode,doctor_pincode_list)
             
-            info_str = "{0} works in {1} and the opd days for the doctor are {2}\nThe timings are : {3}\n Do you want to make an appointment with {4} ?".format(
+            info_str = "{0} works in {1} , {2} and the opd days for the doctor are {3}\nThe timings are : {4}\n Do you want to make an appointment with {5} ?".format(
                 doctor_info_list[doc_index]["Name"],
                 doctor_info_list[doc_index]["Hospital"],
+                doctor_info_list[doc_index]["Area"],
                 doctor_info_list[doc_index]["OPD_Days"],
                 doctor_info_list[doc_index]["Timings"],
                 doctor_info_list[doc_index]["Name"]
@@ -162,9 +217,10 @@ def bookappointment(event):
             
         else:
             
-            info_str = "{0} works in {1} and the opd days for the doctor are {2}\nThe timings are : {3}\n Do you want to make an appointment with {4} ?".format(
+            info_str = "{0} works in {1} , {2} and the opd days for the doctor are {3}\nThe timings are : {4}\n Do you want to make an appointment with {5} ?".format(
                 doctor_info_list[0]["Name"],
                 doctor_info_list[0]["Hospital"],
+                doctor_info_list[0]["Area"],
                 doctor_info_list[0]["OPD_Days"],
                 doctor_info_list[0]["Timings"],
                 doctor_info_list[0]["Name"]
