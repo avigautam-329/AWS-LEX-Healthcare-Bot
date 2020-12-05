@@ -89,3 +89,34 @@ Each department has information about 10 doctors distributed across the three re
 
 ## Lambda Function and it's Usage
 
+Lambda function is used in this project to incorporate different services of AWS , In this case I have used Lambda for 2 main reasons :
+- First one is to use the Department inferred by the bot to fetch the data from the DynamoDB table called **DoctorInfo**.
+- Secondly, It is used to govern the flow of theconversation and error handling.
+
+The lambda function works on the basis of the currentIntent and the event json passed by the lex bot to the Lambda function. Eg. of event json is:
+
+'''
+{
+    "messageVersion": "1.0",
+    "invocationSource": "DialogCodeHook",
+    "userId": "wch89kjqcpkds8seny7dly5x3otq68j3",
+    "bot": {
+        "name": "HealthCareBot",
+        "alias": null,
+        "version": "$LATEST"
+    },
+    "outputDialogMode": "Text",
+    "currentIntent": {
+        "name": "Greetings",
+        "slots": {
+            "FirstName": "Avi",
+            "LastName": "Gautam",
+            "Age": "21",
+            "Department": "Cardiologist",
+            "Pincode": "110029"
+        },
+        "confirmationStatus": "None"
+    }
+}
+
+'''
