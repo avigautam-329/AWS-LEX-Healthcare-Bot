@@ -93,12 +93,12 @@ Lambda function is used in this project to incorporate different services of AWS
 - First one is to use the Department inferred by the bot to fetch the data from the DynamoDB table called **DoctorInfo**.
 - Secondly, It is used to govern the flow of theconversation and error handling.
 
-The lambda function works on the basis of the currentIntent and the event json passed by the lex bot to the Lambda function. Eg. of event json is:
+The lambda function works on the basis of the currentIntent and the event json passed by the lex bot to the Lambda function. **Eg. of event json is**:
 
 ```
 {
     "messageVersion": "1.0",
-    "invocationSource": "DialogCodeHook",
+    "invocationSource": "FulfillmentCodeHook",
     "userId": "wch89kjqcpkds8seny7dly5x3otq68j3",
     "bot": {
         "name": "HealthCareBot",
@@ -120,3 +120,14 @@ The lambda function works on the basis of the currentIntent and the event json p
 }
 
 ```
+The lambda_handler() function takes in the event and based on the currentIntent it calls the necessary function.
+
+The name of the lambda function used here is **DoctorInfoLambdafunction** .
+
+Now for the intents:
+- _Greetings_ : The lambda function is used for fulfillment purporses to show the response card with the names of all the doctors w.r.t the department chosen by the bot.
+    - The function used to fetch the data and show the response card is greetings_intent().
+![Greetings lambda](https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/Fulfillment.png) 
+- _BookAnAppointment_ : Lambda function is used here to fill the slots using **Elicitslot** type . Hence the lambda function is used her in the DialogHook. Hence in this intent lambda function has an integeral function of controlling the flow of the dialogue and also for error handling.
+![BookAnAppointment lambda](https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/BookAnAppointment/LambdaValidation.png)
+
