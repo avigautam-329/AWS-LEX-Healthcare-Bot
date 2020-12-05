@@ -171,6 +171,43 @@ def bookappointment(event):
     response = None
     opddays_arr = []
     
+    greetings_sess = client_lex.get_session(
+        botName=event["bot"]["name"],
+        botAlias=event["bot"]["alias"],
+        userId=event["userId"]
+        )
+        
+    for i in range(len(greetings_sess["recentIntentSummaryView"])):
+            
+        if greetings_sess["recentIntentSummaryView"][i]["intentName"] == "Greetings":
+            department = greetings_sess["recentIntentSummaryView"][i]["slots"]["Department"]
+            response = table.query(
+            IndexName='Department-index',
+                KeyConditionExpression=Key('Department').eq(department)
+            )
+            
+    doctor_name = event["currentIntent"]["slots"]["Doctor_Name"]
+    doctor_info_list = []
+    doctor_pincode_list = []
+        
+    for j in range(len(response['Items'])):
+            
+        if response['Items'][j]['Name'] == doctor_name:
+            doctor_info_list.append(response['Items'][j])
+            doctor_pincode_list.append(int(response['Items'][j]['Pincode']))
+        
+    if len(doctor_info_list) >= 2 :
+            
+        patient_pincode = greetings_sess["recentIntentSummaryView"][i]["slots"]["Pincode"]
+        patient_pincode = int(patient_pincode)
+        doc_index = pincode_Distance(patient_pincode,doctor_pincode_list)
+        opddays_arr = str(doctor_info_list[doc_index]["OPD_Days"]).split(",")
+
+            
+    else:
+        opddays_arr = str(doctor_info_list[0]["OPD_Days"]).split(",")
+
+    
     if event["currentIntent"]["slots"]["Confirmation_Status"] == None:
         
         greetings_sess = client_lex.get_session(
@@ -303,8 +340,6 @@ def bookappointment(event):
             
     elif event["currentIntent"]["slots"]["Confirmation_Status"] != None and event["currentIntent"]["slots"]["opd_days"] != None and event["currentIntent"]["slots"]["User_time"] == None:
         
-        
-        
         if check_opddays(str(event["currentIntent"]["slots"]["opd_days"]),opddays_arr) == False:
         
             return_statement ={             
@@ -319,7 +354,7 @@ def bookappointment(event):
                         },
                         "message": {
                             "contentType": "PlainText", 
-                            "content": "Please choose another day"  
+                            "content": "Please choose another day."  
                     }
                 }
             }
