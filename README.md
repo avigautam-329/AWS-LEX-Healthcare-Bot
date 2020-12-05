@@ -57,5 +57,13 @@ Each department has information about 10 doctors distributed across the three re
 **The index used to search the DynamoDB are:**
 ![DynamoDB-Indexes](https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/DynamoDB/IndexesPic.png) 
 
-### Slots and Slotypes used in AWS Lex 
+## Slots and Slotypes used in AWS Lex 
 
+- **Greetings** : The slots and slotypes in this intent used are:
+    - _FirstName_ : This is the slot that asks and stores the first name of the patient. The SlotType used here is **amazon.us_first_name** which is a built in slot type in amazon lex.
+    - _LastName_ : This is the slot that asks and stores the last name of the patient. The SlotType used here is **amazon.us_last_name** which is a built in slot type in aws lex.
+    - _Age_ : This stores the age of the patient and uses a custom SlotType **AgeGroups**.![Age Groups](https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/AgeGroups.png)
+    - _Department_ : This computes the medical Department based on the symptoms given by the user. It uses a custom SlotType **DepartmentName**.![Department Name](https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/DepartmentName1.png)![Department Name](https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/DepartmentName2.png)
+![Greetings Slots](https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/SlotAndSlotTypes.png)
+    
+ 
