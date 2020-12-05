@@ -13,7 +13,9 @@ Amazon Web Services (AWS) is the world's most comprehensive and broadly adopted 
 
 ### What all services are used in this project ?
 
-- **AWS LEX** - Amazon Lex is a service for building conversational interfaces into any application using voice and text. With Amazon Lex, you can build bots to increase contact centre productivity, automate simple tasks, and drive operational efficiencies across the enterprise.
+- **AWS LEX** - Amazon Lex is a service for building conversational interfaces into any application using voice and text. With Amazon Lex, you can build bots to increase contact centre productivity, automate simple tasks, and drive operational efficiencies across the enterprise. The two main components of AWS LEX are:
+    - _Intents_:  An intent represents an action that the user wants to perform.
+    - _Slots_: For each intent, you can specify parameters that indicate the information that the intent needs to fulfill the user's request. These parameters, or slots, have a type. A slot type is a list of values that Amazon Lex uses to train the machine learning model to recognize values for a slot.
 - **AWS LAMBDA** - AWS Lambda is a serverless compute service that runs your code in response to events and automatically manages the underlying compute resources for you. The Lambda function is written in Python language.
 - **DYNAMO DB** - Amazon DynamoDB is a key-value and document database that delivers single-digit millisecond performance at any scale. It's a fully managed, multi-region, multi-active, durable database with built-in security, backup and restore, and in-memory caching for internet-scale applications.
 
