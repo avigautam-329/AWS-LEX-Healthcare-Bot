@@ -68,7 +68,7 @@ Each department has information about 10 doctors distributed across the three re
         <img src="https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/DepartmentName1.png" width="400" />
         <img src="https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/DepartmentName2.png" width="400" /> 
     </p>
-    - _Pincode_ : The pincode contains the pincode of the user's/patient's address soo that these pincodes can be compared with the pincode of the hospital to reorder the listings of the the doctors with respect to the hospitals closest to them.It uses the custom built slotTyoe **Pincode_Area**.![Pincode slot](https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/Pincode_Area.png)
+    - _Pincode_ : The pincode contains the pincode of the user's/patient's address soo that these pincodes can be compared with the pincode of the hospital to reorder the listings of the the doctors with respect to the hospitals closest to them.It uses the custom built slotTyoe **Pincode_Area**.                     ![Pincode slot](https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/Pincode_Area.png)
 ![Greetings Slots](https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Greetings/SlotAndSlotTypes.png)
     
  
