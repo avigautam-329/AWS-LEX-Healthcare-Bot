@@ -150,6 +150,8 @@ Libraries used in Lambda function are *boto3*,*json* and *aws-cli* .
         <img src="https://github.com/avigautam-329/AWS-LEX-Healthcare-Bot/blob/master/Images/Lex/Conversations/part-6.png" width="400" />  
 </p>
 
+Click [here](https://drive.google.com/file/d/1BGqeSBvZOgoBwZDQrg_B2kie50sq_Ylm/view?usp=sharing) to see the video.
+
 ***
 
 Thank you for reading this readme. For further information or any queries do contact me!!
