@@ -3,6 +3,7 @@
 ![AWS LEX BADGE](https://img.shields.io/badge/AWS%20-Lex-orange)
 ![AWS LAMBDA BADGE](https://img.shields.io/badge/AWS%20-lambda-orange)
 ![AWS DYNAMO DB](https://img.shields.io/badge/AWS%20-DyanmoDB-blue)
+![AWS CloudFormation](https://img.shields.io/badge/AWS%20-CloudFormation-red)
 ![Python Badge](https://img.shields.io/badge/Python-v3.7.8-yellowgreen)
 ![Python Boto3](https://img.shields.io/badge/Boto3-v1.15.12-lightgrey)
 ![Python Json](https://img.shields.io/badge/Json-v.2.0.9-lightgrey)
@@ -152,6 +153,11 @@ Libraries used in Lambda function are *boto3*,*json* and *aws-cli* .
 
 Click [here](https://drive.google.com/file/d/1BGqeSBvZOgoBwZDQrg_B2kie50sq_Ylm/view?usp=sharing) to see the video.
 
+
+## Deployment Using AWS CloudFormation
+
+The bot is temporarily deployed using cloud formation services.
+Click [here](https://d1h0fkgnhvbml0.cloudfront.net/) to see a demo of the bot as a user.
 ***
 
 Thank you for reading this readme. For further information or any queries do contact me!!
